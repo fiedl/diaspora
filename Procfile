@@ -1,2 +1,1 @@
-web: bin/bundle exec unicorn -c config/unicorn.rb -p $PORT
-sidekiq: bin/bundle exec sidekiq
+sidekiq: bundle exec sidekiq --environment ${RAILS_ENV:-production} --logfile log/sidekiq.log
