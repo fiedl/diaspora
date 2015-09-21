@@ -656,7 +656,7 @@ configuration: ## Section
       #starttls_auto: true
 
       ## The domain for the HELO command, if needed.
-      #domain: 'smtp.example.org'
+      domain: 'smtp.wingolf.org'
 
       ## OpenSSL verify mode used when connecting to a SMTP server with TLS.
       ## Set this to 'none' if you have a self-signed certificate. Possible
