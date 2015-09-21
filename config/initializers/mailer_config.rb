@@ -35,8 +35,8 @@ Diaspora::Application.configure do
       if AppConfig.mail.smtp.authentication != "none"
         smtp_settings.merge!({
           authentication:       AppConfig.mail.smtp.authentication.gsub('-', '_').to_sym,
-          user_name:            AppConfig.mail.smtp.username.get,
-          password:             AppConfig.mail.smtp.password.get,
+          user_name:            Rails.application.secrets.smtp_user,
+          password:             Rails.application.secrets.smtp_password,
           enable_starttls_auto: AppConfig.mail.smtp.starttls_auto?
         })
       end
