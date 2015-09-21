@@ -625,7 +625,7 @@ configuration: ## Section
     enable: true
 
     ## Sender address used in mail sent by Diaspora.
-    sender_address: 'Diaspora auf YourPlatform <root@your-platform.org>'
+    sender_address: 'root@your-platform.org'
 
     ## This selects which mailer should be used. Use 'smtp' for a smtp
     ## connection, 'sendmail' to use the sendmail binary or
