@@ -1,24 +1,21 @@
 <div class="poll-question control-group">
-  <div class="controls">
-    <input class="span12" placeholder="{{t 'publisher.question' }}" type="text" name="poll_question">
-  </div>
+  <input class="input-block-level" placeholder="{{t 'publisher.question' }}" type="text" name="poll_question">
 </div>
 <div class="poll-answers">
-  <div class="poll-answer control-group">
-    <div class="controls">
-      <input type="text" name="poll_answers[]" placeholder="{{t 'publisher.option' nr=1}}">
-      <div class="remove-answer icons-deletelabel"></div>
+  <div class="poll-answer row-fluid">
+    <div class="span11">
+      <input type="text" class="input-block-level" name="poll_answers[]" placeholder="{{t 'publisher.option' }}">
+    </div>
+    <div class="span1">
+      <i class="remove-answer entypo cross"></i>
     </div>
   </div>
-  <div class="poll-answer control-group">
-    <div class="controls">
-      <input type="text" name="poll_answers[]" placeholder="{{t 'publisher.option' nr=2}}">
-      <div class="remove-answer icons-deletelabel"></div>
+  <div class="poll-answer row-fluid">
+    <div class="span11">
+      <input type="text" class="input-block-level" name="poll_answers[]" placeholder="{{t 'publisher.option' }}">
     </div>
-  </div>
-</div>
-<div class="control-group add-answer">
-  <div href="#" class="button creation">
-    {{t 'publisher.add_option' }}
+    <div class="span1">
+      <i class="remove-answer entypo cross"></i>
+    </div>
   </div>
 </div>

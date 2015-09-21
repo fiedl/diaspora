@@ -7,7 +7,7 @@ class ReportController < ApplicationController
   before_filter :redirect_unless_admin, :except => [:create]
 
   def index
-    @reports = Report.where(reviewed: false).all
+    @reports = Report.where(reviewed: false)
   end
 
   def update

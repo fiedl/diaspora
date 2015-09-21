@@ -1,10 +1,4 @@
--#   Copyright (c) 2010-2011, Diaspora Inc.  This file is
--#   licensed under the Affero General Public License version 3 or later.  See
--#   the COPYRIGHT file.
-
 - content_for :head do
-  = javascript_include_tag :profile
-
   :javascript
     $(document).ready(function () {
       var data = $.parseJSON( '#{@tags_array.to_json.gsub("'", "\\\\'")}' ),
@@ -41,24 +35,27 @@
 
 %h4
   = t('profiles.edit.your_name')
-= label_tag 'profile[first_name]', t('profiles.edit.first_name')
-= text_field_tag 'profile[first_name]', profile.first_name
 
-= label_tag 'profile[first_name]', t('profiles.edit.last_name')
-= text_field_tag 'profile[last_name]', profile.last_name
+.row-fluid
+  .span6
+    = label_tag 'profile[first_name]', t('profiles.edit.first_name')
+    = text_field_tag 'profile[first_name]', profile.first_name, :class => 'span12'
+  .span6
+    = label_tag 'profile[last_name]', t('profiles.edit.last_name')
+    = text_field_tag 'profile[last_name]', profile.last_name, :class => 'span12'
 
-%br
+.small-horizontal-spacer
 
 %h4
   = t('profiles.edit.your_tags')
 
 = text_field_tag 'profile[tag_string]', "", :placeholder => t('profiles.edit.your_tags_placeholder')
 
-%br
+.small-horizontal-spacer
 
 %h4
   = t('profiles.edit.your_photo')
 
 = render 'photos/new_profile_photo', :aspect => aspect, :person => person
 
-%br
+.small-horizontal-spacer

@@ -5,14 +5,18 @@
 - content_for :page_title do
   = t('.edit_services')
 
-#section_header
-  %h2
-    = t('settings')
-  = render 'shared/settings_nav'
+.container
+  .row-fluid
+    .span12
+      #section_header
+        %h2
+          = t('settings')
+        = render 'shared/settings_nav'
 
-.span-14.prepend-5.last
-  = render 'shared/add_remove_services'
+  .row-fluid
+    .span7
+      = render 'add_remove_services'
 
-.span-5
-  %p
-    = t('.services_explanation')
+    .span5
+      %p
+        = t('.services_explanation')

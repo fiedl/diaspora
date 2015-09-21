@@ -1,3 +1,5 @@
+// @license magnet:?xt=urn:btih:0b31508aeb0634b347b8270c7bee4d411b5d4109&dn=agpl-3.0.txt AGPL-v3-or-Later
+
 /*   Copyright (c) 2010-2011, Diaspora Inc.  This file is
  *   licensed under the Affero General Public License version 3 or later.  See
  *   the COPYRIGHT file.
@@ -25,12 +27,15 @@ jQuery.fn.center = (function() {
       imageSelector: 'img.stream-photo'
     };
 
-    this.subscribe("widget/ready", function(evt) {
+    this.subscribe("widget/ready", function() {
       $.extend(self, {
         lightbox: $("#lightbox"),
+        navigation: $("#lightbox-navigation"),
         imageset: $("#lightbox-imageset"),
         backdrop: $("#lightbox-backdrop"),
         closelink: $("#lightbox-close-link"),
+        scrollleft: $("#lightbox-scrollleft"),
+        scrollright: $("#lightbox-scrollright"),
         image: $("#lightbox-image"),
         body: $(document.body),
         window: $(window)
@@ -47,12 +52,25 @@ jQuery.fn.center = (function() {
         evt.preventDefault();
         self.resetLightbox();
       });
-      self.backdrop.click(self.resetLightbox);
       self.lightbox.click(self.resetLightbox);
 
       self.backdrop.click(function(evt) {
         evt.preventDefault();
         self.resetLightbox();
+      });
+
+      self.scrollleft.click(function(evt){
+        evt.preventDefault();
+        evt.stopPropagation();
+        self.navigation.animate({scrollLeft: (self.navigation.scrollLeft()
+           - (self.window.width() - 150))}, 200, 'swing');
+      });
+
+      self.scrollright.click(function(evt){
+        evt.preventDefault();
+        evt.stopPropagation();
+        self.navigation.animate({scrollLeft: (self.navigation.scrollLeft()
+           + (self.window.width() - 150))}, 200, 'swing');
       });
 
       self.body.keydown(function(evt) {
@@ -76,7 +94,7 @@ jQuery.fn.center = (function() {
 
     this.nextImage = function(thumb){
       var next = thumb.next();
-      if (next.length == 0) {
+      if (next.length === 0) {
         next = self.imageset.find("img").first();
       }
       return(next);
@@ -84,7 +102,7 @@ jQuery.fn.center = (function() {
 
     this.prevImage = function(thumb){
       var prev = thumb.prev();
-      if (prev.length == 0) {
+      if (prev.length === 0) {
         prev = self.imageset.find("img").last();
       }
       return(prev);
@@ -112,9 +130,9 @@ jQuery.fn.center = (function() {
           "data-full-photo": image.attr("data-full-photo")
         });
 
-        if(image.attr("data-full-photo") == imageUrl) {
+        if(image.attr("data-full-photo") === imageUrl) {
           imageThumb = thumb;
-        };
+        }
 
         self.imageset.append(thumb);
       });
@@ -122,6 +140,8 @@ jQuery.fn.center = (function() {
       self
         .selectImage(imageThumb)
         .revealLightbox();
+
+      self.scrollToThumbnail(imageThumb);
     };
 
     this.imagesetImageClicked = function(evt) {
@@ -131,10 +151,17 @@ jQuery.fn.center = (function() {
       self.selectImage($(this));
     };
 
+    this.scrollToThumbnail = function(imageThumb) {
+      self.navigation.animate({scrollLeft: (self.navigation.scrollLeft()
+         + imageThumb.offset().left +35 - (self.window.width() / 2))}, 200, 'swing');
+    };
+
     this.selectImage = function(imageThumb) {
       $(".selected", self.imageset).removeClass("selected");
       imageThumb.addClass("selected");
       self.image.attr("src", imageThumb.attr("data-full-photo"));
+
+      self.scrollToThumbnail(imageThumb);
 
       return self;
     };
@@ -151,7 +178,7 @@ jQuery.fn.center = (function() {
     this.resetLightbox = function() {
       self.lightbox.hide();
       self.body.removeClass("lightboxed");
-      self.image.attr("src", "assets/ajax-loader2.gif");
+      self.image.attr("src", ImagePaths.get("ajax-loader2.gif"));
       self.imageset.html("");
     };
 
@@ -162,3 +189,5 @@ jQuery.fn.center = (function() {
 
   Diaspora.Widgets.Lightbox = Lightbox;
 })();
+// @license-end
+
