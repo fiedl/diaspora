@@ -132,6 +132,7 @@ gem "twitter-text",      "1.12.0"
 gem "roxml",             "3.1.6"
 gem "ruby-oembed",       "0.8.14"
 gem "open_graph_reader", "0.6.1"
+gem "reverse_markdown",  "0.8.2"
 
 # Services
 
