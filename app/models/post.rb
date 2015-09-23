@@ -28,6 +28,8 @@ class Post < ActiveRecord::Base
   validates_uniqueness_of :id
 
   validates :author, presence: true
+  
+  before_create :convert_html_to_markdown
 
   after_create do
     self.touch(:interacted_at)
@@ -118,6 +120,31 @@ class Post < ActiveRecord::Base
   def like_for(user)
     return unless user
     likes.where(:author_id => user.person.id).first
+  end
+  
+  def convert_html_to_markdown
+    # If the text contains html tags and markdown syntax, we need to convert both markdown.
+    # Otherwise, there are parsing issues later.
+    #
+    # I get the best results when converting everything to html first, and then back to markdown.
+    #
+    if self.text.try(:include?, "</")
+      
+      # 1. Convert markdown to html.
+      #    https://github.com/vmg/redcarpet
+      #
+      self.text = Redcarpet::Markdown.new(Redcarpet::Render::HTML, hard_wrap: true).render(self.text)
+      
+      # 2. Convert double newlines to paragraphs. Otherwise, these will be lost,
+      #    which looks especially bad after images.
+      #
+      self.text = self.text.gsub("\n\n", "</p><p>")
+      
+      # 3. Convert everything back to markdown.
+      #    https://github.com/xijo/reverse_markdown
+      #
+      self.text = ReverseMarkdown.convert self.text
+    end
   end
 
   #############
