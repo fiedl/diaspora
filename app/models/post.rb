@@ -128,7 +128,7 @@ class Post < ActiveRecord::Base
     #
     # I get the best results when converting everything to html first, and then back to markdown.
     #
-    if self.text.try(:include?, "</")
+    if self.text.try(:include?, "</") || self.text.try(:include?, "/>")
       
       # 1. Convert markdown to html.
       #    https://github.com/vmg/redcarpet
@@ -139,8 +139,16 @@ class Post < ActiveRecord::Base
       #    which looks especially bad after images.
       #
       self.text = self.text.gsub("\n\n", "</p><p>")
+      self.text = self.text.gsub("\r\n", "</p><p>")
       
-      # 3. Convert everything back to markdown.
+      # 3. Clean up some issues that would cause problems when converting to markdown.
+      #
+      self.text = self.text.gsub /align=\"[^ ]*\"/, ""      # ReverseMarkdown does not understand this in image tags
+      self.text = self.text.gsub /hspace=\"[^ ]*\"/, ""     # 
+      self.text = self.text.gsub /img[ ]*src=/, "img src="  # 
+      self.text = self.text.gsub(/(<img[^>]*>)([^\n<])/) { $1 + "</p><p>" + $2 }  # New paragraph after images
+            
+      # 4. Convert everything back to markdown.
       #    https://github.com/xijo/reverse_markdown
       #
       self.text = ReverseMarkdown.convert self.text
