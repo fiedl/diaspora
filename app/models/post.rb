@@ -155,6 +155,14 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def subscriptions
+    Subscription.by_post self
+  end
+  
+  def subscriber_users  # "subscribers" is already taken :(
+    subscriptions.map(&:subscriber).uniq
+  end
+
   #############
 
   def self.diaspora_initialize(params)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150724152052) do
+ActiveRecord::Schema.define(version: 20151231140208) do
 
   create_table "account_deletions", force: :cascade do |t|
     t.string   "diaspora_handle", limit: 255
@@ -481,6 +481,14 @@ ActiveRecord::Schema.define(version: 20150724152052) do
   end
 
   add_index "simple_captcha_data", ["key"], name: "idx_key", using: :btree
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.integer  "subscriber_id", limit: 4
+    t.integer  "channel_id",    limit: 4
+    t.string   "channel_type",  limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "tag_followings", force: :cascade do |t|
     t.integer  "tag_id",     limit: 4, null: false
