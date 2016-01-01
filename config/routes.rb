@@ -239,6 +239,9 @@ Diaspora::Application.routes.draw do
   if AppConfig.settings.terms.enable?
     get 'terms' => 'terms#index'
   end
+  
+  # Subscriptions
+  resources :subscriptions
 
   # Startpage
   root :to => 'home#show'
