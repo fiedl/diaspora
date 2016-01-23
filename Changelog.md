@@ -1,3 +1,24 @@
+# 0.5.6.1
+
+* Fix Nokogiri CVE-2015-7499
+* Fix unsafe "Remember me" cookies in Devise
+
+# 0.5.6.0
+
+## Refactor
+* Add more integration tests with the help of the new diaspora-federation gem [#6539](https://github.com/diaspora/diaspora/pull/6539)
+
+## Bug fixes
+* Fix mention autocomplete when pasting the username [#6510](https://github.com/diaspora/diaspora/pull/6510)
+* Use and update updated\_at for notifications [#6573](https://github.com/diaspora/diaspora/pull/6573)
+* Ensure the author signature is checked when receiving a relayable [#6539](https://github.com/diaspora/diaspora/pull/6539)
+* Do not try to display hovercards when logged out [#6587](https://github.com/diaspora/diaspora/pull/6587)
+
+## Features
+
+* Display hovercards without aspect dropdown when logged out [#6603](https://github.com/diaspora/diaspora/pull/6603)
+* Add media.ccc.de as a trusted oEmbed endpoint
+
 # 0.5.5.1
 
 * Fix XSS on profile pages
