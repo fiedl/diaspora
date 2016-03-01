@@ -66,6 +66,7 @@ class StatusMessagesController < ApplicationController
   end
 
   def handle_create_error(error)
+    logger.debug error
     respond_to do |format|
       format.html { redirect_to :back }
       format.mobile { redirect_to stream_path }
