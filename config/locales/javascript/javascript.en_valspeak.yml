@@ -19,15 +19,20 @@ en_valspeak:
         one: "In <%= count %> aspect <3"
         other: "In like, <%= count %> aspectz"
         zero: "Pick aspectz"
+      updating: "updatin..."
     aspect_navigation:
       add_an_aspect: "+ Add an aspect!!!"
       deselect_all: "Unhighlight all"
       no_aspects: "No aspectz picked"
       select_all: "Highlight all"
+    aspects:
+      create:
+        add_a_new_aspect: "Add a new aspectttttt"
     bookmarklet:
       post_something: "Make a postie to d*!!"
       post_submit: "Submitting postie... hold up..."
       post_success: "Posted!!! Closin popup windowww... <3"
+    cancel: "Cancleee"
     comma: ","
     comments:
       hide: "hide commentz"
@@ -42,6 +47,8 @@ en_valspeak:
       error_remove: "Couldnt like... trash <%= name %> from the aspect :(("
       remove_contact: "Remove BFF"
     conversation:
+      new:
+        no_contacts: "So like, u got to add some ppl before u can start a convo..."
       participants: "Ppl up in here"
     delete: "Trash"
     edit: "Edit!"
@@ -62,12 +69,15 @@ en_valspeak:
       home: "Homee"
       log_out: "Bounce"
       mark_all_as_read: "Read them all"
+      moderator: "MODS MODS"
       notifications: "Noties"
       profile: "Profilee"
       recent_notifications: "Recent Noties"
       search: "Look for"
       settings: "Settins"
       view_all: "Look at all"
+    hide_post: "hide the postie?"
+    hide_post_failed: "Cant hide this postie :/"
     ignore: "Block"
     ignore_failed: "Cant block this h8ter :\\"
     ignore_user: "Ignore this h8ter?"
@@ -115,6 +125,7 @@ en_valspeak:
       ignoring: "U r ignorin all posties from <%= name %>."
       location: "My crib"
       photos: "Pics and selfies <3"
+      posts: "Posties!!"
       you_have_no_tags: "u like... have no tagz!"
     publisher:
       add_option: "Like, add an ansah!"
@@ -124,6 +135,7 @@ en_valspeak:
       option: "Mah ansah<3"
       public: "Internetz - ur postie will b seen by any1 on the internet"
       question: "Question!!!"
+    remove_post: "Remove the postie?"
     report:
       name: "Tattle on"
       prompt: "Plz say y:"
@@ -142,7 +154,6 @@ en_valspeak:
       follow: "Stalk"
       followed_tag:
         add_a_tag: "Add a tag!!"
-        contacts_title: "Ppl who <3 these tagz"
         follow: "Folloe!!"
         title: "#Followed Tagz"
       hide: "Hyde"
@@ -189,7 +200,7 @@ en_valspeak:
       seconds: "less than a min"
       suffixAgo: "like... ago"
       suffixFromNow: "from nao"
-      wordSeparator: ""
+      wordSeparator: " "
       year: "bout like... a yr"
       years: "like %d yrs"
     unblock_failed: "Unblockin this h8ter didnt work :("
