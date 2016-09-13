@@ -4,8 +4,6 @@
 
 Diaspora::Application.configure do
   config.action_mailer.perform_deliveries = AppConfig.mail.enable? || ENV['LETTER_OPENER'].present?
-
-<<<<<<< HEAD
   unless Rails.env == 'test' || ENV['LETTER_OPENER'].present? || !AppConfig.mail.enable?
     if AppConfig.mail.method == "sendmail"
       config.action_mailer.delivery_method = :sendmail
