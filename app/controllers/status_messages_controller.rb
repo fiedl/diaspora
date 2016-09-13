@@ -47,13 +47,18 @@ class StatusMessagesController < ApplicationController
   end
 
   def create
-    @status_message = StatusMessageCreationService.new(params, current_user).status_message
-    handle_mention_feedback
-    handle_subscriptions
+    normalized_params = params.merge(
+      services:   normalize_services,
+      aspect_ids: normalize_aspect_ids,
+      public:     normalize_public_flag
+    )
+    status_message = StatusMessageCreationService.new(current_user).create(normalized_params)
+    handle_mention_feedback(status_message)
+    handle_subscriptions(status_message)
     respond_to do |format|
       format.html { redirect_to :back }
       format.mobile { redirect_to stream_path }
-      format.json { render json: PostPresenter.new(@status_message, current_user), status: 201 }
+      format.json { render json: PostPresenter.new(status_message, current_user), status: 201 }
     end
   rescue StandardError => error
     handle_create_error(error)
@@ -74,16 +79,16 @@ class StatusMessagesController < ApplicationController
     end
   end
 
-  def handle_mention_feedback
+  def handle_mention_feedback(status_message)
     return unless comes_from_others_profile_page?
-    flash[:notice] = successful_mention_message
+    flash[:notice] = t("status_messages.create.success", names: status_message.mentioned_people_names)
   end
-  
-  def handle_subscriptions
-    @status_message.subscriber_users.each do |subscriber|
+
+  def handle_subscriptions(status_message)
+    status_message.subscriber_users.each do |subscriber|
       recipient_id = subscriber.id
-      actor_id = @status_message.author.owner.id
-      target_id = @status_message.id
+      actor_id = status_message.author.owner.id
+      target_id = status_message.id
       Workers::Mail::Posted.perform_async(recipient_id, actor_id, target_id)
     end
   end
@@ -97,11 +102,24 @@ class StatusMessagesController < ApplicationController
   end
 
   def own_profile_page?
-    request.env["HTTP_REFERER"].include?("/people/" + params[:status_message][:author][:guid].to_s)
+    request.env["HTTP_REFERER"].include?("/people/" + current_user.guid)
   end
 
-  def successful_mention_message
-    t("status_messages.create.success", names: @status_message.mentioned_people_names)
+  def normalize_services
+    [*params[:services]].compact
+  end
+
+  def normalize_aspect_ids
+    aspect_ids = [*params[:aspect_ids]]
+    if aspect_ids.first == "all_aspects"
+      current_user.aspect_ids
+    else
+      aspect_ids
+    end
+  end
+
+  def normalize_public_flag
+    [*params[:aspect_ids]].first == "public"
   end
 
   def remove_getting_started
