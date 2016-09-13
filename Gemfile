@@ -62,9 +62,7 @@ gem "bootstrap-switch-rails", "3.3.3"
 
 # Database
 
-group :mysql, optional: true do
-  gem "mysql2", "0.4.4"
-end
+gem "mysql2", "0.4.4"
 group :postgresql, optional: true do
   gem "pg",     "0.18.4"
 end
@@ -309,7 +307,7 @@ group :development, :test do
 
   # silence assets
   gem "quiet_assets", "1.1.0"
-  
+
   # Test notification emails by opening emails in the browser
   gem "letter_opener"
 end
