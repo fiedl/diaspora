@@ -1,3 +1,6 @@
+# Secrets are provided by our deployment script (SF, 2016-12-18)
+config/secrets.yml
+
 # XMPP certificates, keys and user data
 config/certs/*.crt
 config/certs/*.key
