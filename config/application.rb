@@ -1,7 +1,7 @@
 require_relative 'boot'
 
 require 'rails/all'
-Bundler.require(:default, Rails.env)
+Bundler.require(:default, *Bundler.settings.with, Rails.env)
 
 # Do not dump the limit of boolean fields on MySQL,
 # since that generates a db/schema.rb that's incompatible
@@ -65,28 +65,23 @@ module Diaspora
     config.assets.initialize_on_precompile = false
 
     # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-    config.assets.precompile += %w{
-      aspect-contacts.js
+    config.assets.precompile += %w(
       contact-list.js
       ie.js
-      inbox.js
       jquery2.js
       jquery_ujs.js
-      jquery-textchange.js
       main.js
       jsxc.js
+      mobile/bookmarklet.js
       mobile/mobile.js
-      people.js
-      publisher.js
       templates.js
-      validation.js
 
       error_pages.css
       admin.css
       rtl.css
       color_themes/*/desktop.css
       color_themes/*/mobile.css
-    }
+    )
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
@@ -115,3 +110,6 @@ module Diaspora
     end
   end
 end
+
+Rails.application.routes.default_url_options[:host] = AppConfig.pod_uri.host
+Rails.application.routes.default_url_options[:port] = AppConfig.pod_uri.port

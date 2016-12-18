@@ -70,7 +70,7 @@
     onLike: function(evt){
       evt.preventDefault();
       var link = $(evt.target),
-          likeCounter = $(evt.target).closest(".stream_element").find(".like-count");
+          likeCounter = $(evt.target).closest(".stream-element").find(".like-count");
 
       if(!link.hasClass("loading") && link.hasClass("inactive")) {
         Diaspora.Mobile.PostActions.like(likeCounter, link);
@@ -98,8 +98,12 @@
           success: function() {
             Diaspora.Mobile.PostActions.toggleActive(link);
           },
-          error: function() {
-            alert(Diaspora.I18n.t("failed_to_reshare"));
+          error: function(response) {
+            if (response.status === 0) {
+              alert(Diaspora.I18n.t("errors.connection"));
+            } else {
+              alert(response.responseText);
+            }
           },
           complete: function() {
             Diaspora.Mobile.PostActions.hideLoader(link);
