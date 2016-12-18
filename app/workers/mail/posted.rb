@@ -6,9 +6,9 @@ module Workers
   module Mail
     class Posted < Base
       sidekiq_options queue: :mail
-      
+
       def perform(recipient_id, actor_id, target_id)
-        Notifier.posted(recipient_id, actor_id, target_id).deliver_now
+        Notifier.posted(recipient_id, User.find(actor_id).person_id, target_id).deliver_now
       end
     end
   end
