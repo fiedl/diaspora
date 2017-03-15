@@ -9,7 +9,10 @@ $(document).ready(function() {
     post_content.find('a[href*="posts"]').each(function() {
       link = $(this)
 
-      if (!(link.parents('.reshare').size() > 0)) {
+      if (
+        !(link.parents('.reshare').size() > 0) &&
+        link.text() == link.attr('href')
+      ) {
         (function(link) {
           url = link.attr('href')
           json_url = `${url}.json`
@@ -47,6 +50,12 @@ $(document).ready(function() {
               app.helpers.timeago(quote)
               quote.find('.quote-content')
                 .html(app.helpers.textFormatter(result.text))
+
+              if (result.photos.length > 0) {
+                image = $('<img src="" />')
+                image.attr('src', result.photos[0].sizes.large)
+                quote.find('.quote-content').prepend(image)
+              }
 
               link.replaceWith(quote)
             }
@@ -87,12 +96,8 @@ $(document).on('click', '#aspect_stream_container .feedback a.private-reshare', 
       publisher_view = new app.views.Publisher
       publisher_view.open()
       publisher_view.setText(post_url)
-      //publisher_view.inputEl.focus()
-
-      $('#aspect_stream_container .aspect_dropdown button')
-        .trigger('click.bs.dropdown')
+      publisher_view.inputEl.focus()
     }
-
   })
 
   return false
