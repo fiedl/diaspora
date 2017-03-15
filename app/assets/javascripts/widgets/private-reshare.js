@@ -58,8 +58,7 @@ $(document).ready(function() {
     // Add a "private reshare" button.
     stream_element.find('.feedback').each(function() {
       feedback_section = $(this)
-      //reshare_link = feedback_section.find('a.reshare')
-      reshare_link = feedback_section.find('a.like')
+      reshare_link = feedback_section.find('a.reshare')
 
       post_path = stream_element.find('a.permalink').attr('href')
       post_url = `${window.location.origin}${post_path}`
