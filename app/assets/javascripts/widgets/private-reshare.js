@@ -9,7 +9,10 @@ $(document).ready(function() {
     post_content.find('a[href*="posts"]').each(function() {
       link = $(this)
 
-      if (!(link.parents('.reshare').size() > 0)) {
+      if (
+        !(link.parents('.reshare').size() > 0) &&
+        link.text() == link.attr('href')
+      ) {
         (function(link) {
           url = link.attr('href')
           json_url = `${url}.json`
