@@ -16,6 +16,7 @@
 //= require jquery-ui/widget
 //= require jquery-ui/mouse
 //= require jquery-ui/sortable
+//= require arrive
 //= require keycodes
 //= require jquery.autoSuggest.custom
 //= require fine-uploader/fine-uploader.core
