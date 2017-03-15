@@ -198,6 +198,8 @@ en:
     reshares:
       successful: "The post was successfully reshared!"
       post: "Reshare <%= name %>’s post?"
+    private_reshares:
+      private_reshare: "Private reshare"
     aspect_navigation:
       select_all: "Select all"
       deselect_all: "Deselect all"

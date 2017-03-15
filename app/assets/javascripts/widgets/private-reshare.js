@@ -1,8 +1,11 @@
 $(document).ready(function() {
 
+  // Monitor appearing posts.
   $('#aspect_stream_container').arrive('.post-content', function() {
     post_content = $(this)
+    stream_element = post_content.closest('.stream-element')
 
+    // Replace links to other posts with quotes ("reshares").
     post_content.find('a[href*="posts"]').each(function() {
       link = $(this)
 
@@ -51,6 +54,47 @@ $(document).ready(function() {
         }(link))
       }
     })
+
+    // Add a "private reshare" button.
+    stream_element.find('.feedback').each(function() {
+      feedback_section = $(this)
+      //reshare_link = feedback_section.find('a.reshare')
+      reshare_link = feedback_section.find('a.like')
+
+      post_path = stream_element.find('a.permalink').attr('href')
+      post_url = `${window.location.origin}${post_path}`
+      private_reshare_link = $(`
+        <a href="${post_url}" class="private-reshare" rel="nofollow">
+          ${Diaspora.I18n.t('private_reshares.private_reshare')}
+        </a>
+      `)
+
+      reshare_link.after(private_reshare_link)
+      reshare_link.after(" · ")
+    })
   })
 
+})
+
+$(document).on('click', '#aspect_stream_container .feedback a.private-reshare', function(e) {
+  private_reshare_link = $(this)
+  post_url = private_reshare_link.attr('href')
+
+  already_done = false
+  $("html, body").animate({scrollTop: 0}, function() {
+    if (! already_done) {
+      already_done = true
+
+      publisher_view = new app.views.Publisher
+      publisher_view.open()
+      publisher_view.setText(post_url)
+      //publisher_view.inputEl.focus()
+
+      $('#aspect_stream_container .aspect_dropdown button')
+        .trigger('click.bs.dropdown')
+    }
+
+  })
+
+  return false
 })
