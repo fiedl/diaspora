@@ -51,6 +51,12 @@ $(document).ready(function() {
               quote.find('.quote-content')
                 .html(app.helpers.textFormatter(result.text))
 
+              if (result.photos.length > 0) {
+                image = $('<img src="" />')
+                image.attr('src', result.photos[0].sizes.large)
+                quote.find('.quote-content').prepend(image)
+              }
+
               link.replaceWith(quote)
             }
           })
