@@ -60,9 +60,9 @@ gem "sass-rails",             "5.0.6"
 
 # Database
 
-group :mysql, optional: true do
+#group :mysql, optional: true do
   gem "mysql2", "0.4.5"
-end
+#end
 group :postgresql, optional: true do
   gem "pg",     "0.19.0"
 end
