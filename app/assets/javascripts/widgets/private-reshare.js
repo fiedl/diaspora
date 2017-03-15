@@ -87,12 +87,8 @@ $(document).on('click', '#aspect_stream_container .feedback a.private-reshare', 
       publisher_view = new app.views.Publisher
       publisher_view.open()
       publisher_view.setText(post_url)
-      //publisher_view.inputEl.focus()
-
-      $('#aspect_stream_container .aspect_dropdown button')
-        .trigger('click.bs.dropdown')
+      publisher_view.inputEl.focus()
     }
-
   })
 
   return false
