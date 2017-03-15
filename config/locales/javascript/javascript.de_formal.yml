@@ -241,6 +241,8 @@ de_formal:
     reshares:
       post: "<%= name %>s Beitrag weitersagen?"
       successful: "Der Beitrag wurde erfolgreich weitergesagt!"
+    private_reshares:
+      private_reshare: "Privat weitersagen"
     show_more: "Mehr zeigen"
     stream:
       comment: "Kommentieren"
