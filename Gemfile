@@ -322,3 +322,5 @@ group :development, :test do
   # Test notification emails by opening emails in the browser
   gem "letter_opener"
 end
+
+gem 'mail', '>= 2.6.6.rc1' # https://gemnasium.com/github.com/fiedl/diaspora/alerts#advisory_309
