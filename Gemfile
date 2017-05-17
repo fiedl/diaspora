@@ -323,4 +323,4 @@ group :development, :test do
   gem "letter_opener"
 end
 
-gem 'mail', '>= 2.6.6.rc1' # https://gemnasium.com/github.com/fiedl/diaspora/alerts#advisory_309
+gem 'mail', '~> 2.6.6.rc1' # https://gemnasium.com/github.com/fiedl/diaspora/alerts#advisory_309
