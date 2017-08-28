@@ -23,6 +23,9 @@ function createUploader(){
       sizeLimit: 4194304
     },
     button: document.getElementById("file-upload-publisher"),
+    text: {
+      fileInputTitle: Diaspora.I18n.t("photo_uploader.upload_photos")
+    },
 
     callbacks: {
       onProgress: function(id, fileName, loaded, total) {
@@ -30,7 +33,6 @@ function createUploader(){
         $("#fileInfo-publisher").text(fileName + " " + progress + "%");
       },
       onSubmit: function() {
-        $("#file-upload-publisher").addClass("loading");
         $("#publisher_textarea_wrapper").addClass("with_attachments");
         $("#photodropzone").append(
           "<li class='publisher_photo loading' style='position:relative;'>" +

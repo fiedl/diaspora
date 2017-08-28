@@ -171,6 +171,7 @@ fr:
       invalid_ext: "{file} a une extension invalide. Seules {extensions} sont permises."
       looking_good: "Impressionnant, vous avez un super look !"
       size_error: "{file} est trop gros, la taille maximum est de {sizeLimit}."
+      upload_photos: "Envoyer des photos"
     poll:
       answer_count:
         one: "<%=count%> vote"
@@ -199,7 +200,6 @@ fr:
       you_have_no_tags: "vous n'avez pas de tag !"
     publisher:
       add_option: "Ajouter un choix"
-      limited: "Limité - votre message ne sera vu que par des gens avec qui vous partagez"
       markdown_editor:
         preview: "Aperçu"
         texts:
@@ -231,7 +231,6 @@ fr:
       mention_success: "Mentions réussies : <%= names %>"
       near_from: "Posté à : <%= location %>"
       option: "Choix"
-      public: "Public - votre message sera visible de tous et trouvé par les moteurs de recherche"
       question: "Question"
     remove_post: "Supprimer ce message ?"
     report:
@@ -244,13 +243,14 @@ fr:
     reshares:
       post: "Repartager le message de <%= name %> ?"
       successful: "Le message a été repartagé !"
+    show_all: "Afficher tout"
     show_more: "Voir plus"
     stream:
       comment: "Commenter"
       comments:
-        one: "<%= count %> commantaire"
-        other: "<%= count %> commantaires"
-        zero: "<%= count %> commantaire"
+        one: "<%= count %> commentaire"
+        other: "<%= count %> commentaires"
+        zero: "<%= count %> commentaire"
       disable_post_notifications: "Désactiver les notifications pour ce message"
       enable_post_notifications: "Activer les notifications pour ce message"
       follow: "Suivre"

@@ -82,7 +82,7 @@ configuration: ## Section
       ## Number of times a job is retried (default=10).
       ## There's an exponential effect to this: if you set this too high you
       ## might get too many jobs building up in the queue.
-      ## Set it to false to disable it completely.
+      ## Set it to 0 to disable it completely.
       #retry: 10
 
       ## Lines of backtrace that are stored on failure (default=15).
@@ -305,12 +305,6 @@ configuration: ## Section
       #enable: true
       #host: 'stats.example.org'
       #site_id: 1
-
-    ## Mixpanel event tracking (disabled by default).
-    #mixpanel_uid:
-
-    ## Chartbeat tracking (disabled by default).
-    #chartbeat_uid:
 
     ## Statistics
     ## Your pod will report its name, software version and whether

@@ -9,12 +9,11 @@
 //= require autosize
 //= require charcount
 //= require jquery-placeholder
-//= require rails-timeago
-//= require jquery-ui/core
-//= require jquery-ui/widget
-//= require jquery-ui/mouse
-//= require jquery-ui/sortable
-//= require arrive
+//= require jquery.timeago
+//= require jquery.ui/ui/core
+//= require jquery.ui/ui/widget
+//= require jquery.ui/ui/mouse
+//= require jquery.ui/ui/sortable
 //= require keycodes
 //= require jquery.autoSuggest.custom
 //= require fine-uploader/fine-uploader.core
@@ -42,5 +41,6 @@
 //= require blueimp-gallery/blueimp-gallery-indicator
 //= require leaflet
 //= require api/authorization_page
-// = require bootstrap-markdown/bootstrap-markdown
-// = require helpers/markdown_editor
+//= require bootstrap-markdown/bootstrap-markdown
+//= require helpers/markdown_editor
+//= require jquery.are-you-sure

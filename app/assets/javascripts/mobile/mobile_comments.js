@@ -11,6 +11,8 @@
     initialize: function() {
       var self = this;
 
+      new Diaspora.MarkdownEditor(".comment_box");
+
       this.stream().on("tap click", "a.show-comments", function(evt){
         evt.preventDefault();
         self.toggleComments($(this));
@@ -35,7 +37,7 @@
         self.scrollToOffset(commentContainer);
       });
 
-      this.stream().on("submit", ".new_comment", this.submitComment);
+      this.stream().on("submit", ".new-comment", this.submitComment);
     },
 
     submitComment: function(evt){
@@ -201,7 +203,7 @@
     increaseReactionCount: function(bottomBar) {
       var toggleReactionsLink = bottomBar.find(".show-comments").first();
       var count = toggleReactionsLink.text().match(/.*(\d+).*/);
-      count = parseInt(count, 10);
+      count = parseInt(count, 10) || 0;
       var text = Diaspora.I18n.t("stream.comments", {count: count + 1});
 
       // No previous comment

@@ -31,10 +31,6 @@ de-CH:
           attributes:
             poll:
               already_participated: "Du hesch bi dere Umfrog scho mitgmacht!"
-        request:
-          attributes:
-            from_id:
-              taken: "isch es duplikat vonere scho existierende aafrog."
         reshare:
           attributes:
             root_guid:
@@ -52,7 +48,7 @@ de-CH:
     admin_bar:
       pages: "Siitä"
       pod_stats: "Pod Statistik"
-      report: "Uswertige"
+      report: "Meldige"
       sidekiq_monitor: "Sidekiq-Monitor"
       user_search: "Benutzer Suechi"
       weekly_user_stats: "Wöchentlichi Benutzerstatistik"
@@ -127,6 +123,7 @@ de-CH:
       updating: "wird gänderet..."
     index:
       donate: "Spende"
+      donate_liberapay: "A liberapay spende"
       help:
         any_problem: "Git's es Problem?"
         contact_podmin: "Kontaktier de Admin vo dim Pod!"
@@ -183,7 +180,6 @@ de-CH:
       commenting: "Wird kommentiert..."
   contacts:
     index:
-      add_a_new_aspect: "en neue Aspekt mache"
       add_contact: "Kontakt hinzuefüege"
       all_contacts: "Ali Kontäkt"
       community_spotlight: "Intressanti Lüt"
@@ -234,6 +230,7 @@ de-CH:
   error_messages:
     helper:
       correct_the_following_errors_and_try_again: "Korrigier folgendi Fähler und versuechs nomel."
+    need_javascript: "Die Website brucht JavaScript damit si suuber funktioniert. Wenn du JavaScript deaktiviert hesch, bitte aktivier's und lad d'Siite neu."
   fill_me_out: "Füll mi uus"
   find_people: "Find Mensche oder #Tags"
   help:
@@ -250,6 +247,20 @@ de-CH:
       move_pods_q: "Wie chan i mis Konto uf en andere Pod verschiebe?"
       title: "Konto- und Dateverwaltig"
     aspects:
+      change_aspect_of_post_a: "Nei, aber du chasch emmer en neue Biitrag mache met em gliiche Inhalt ond zomene andere Aspekt henzuefüege."
+      change_aspect_of_post_q: "Wenn ich öppis posted ha, chann ich no d'Aspekt(e) wos chöne gseh ändere?"
+      contacts_know_aspect_a: "Nei. Si chönne de Name vom Aspekt onder kene Bedingige gseh"
+      contacts_know_aspect_q: "Wösse mini Kontökt i welne Aspekt mini Kontäkt send?"
+      contacts_visible_a: "When du die Option aktiviersch, denne chöne Kontäkt vo dem Aspekt gseh wer söscht no im gliiche Aspekt esch. Esch esch am beschte, wenn du die Option nor aktiviersch, wenn alli em Aspekt sech kenne. Zom Biispel, wenn de Aspekt zo emene Club oder enere Organisation ghört, wo du ou debii besch. Sie wärde trotzdem ned chönne gseh wie de Aspekt heisst."
+      contacts_visible_q: "Was heisst \"mach Kontäkt i dem Aspekt sechtbar förenand\"?"
+      delete_aspect_q: "Wie chan ich en Aspekt lösche?"
+      person_multiple_aspects_q: "Chan ich en Person zo mehrere Aspekt henzuefüege?"
+      post_multiple_aspects_q: "Chan ich Sache zo mehrere Aspekt gliichzitig henzuefüege?"
+      remove_notification_a: "Nei. Sie werdes ou ned erfahre wenn du si zo wiitere Aspekt henzuefüegsch, wenn du met ehne scho diini Inhält duesch teile."
+      remove_notification_q: "Wenn ich öpper vo eim oder mehrere Aspekte entferne, ehrfahrt die Person das?"
+      rename_aspect_q: "Wie duen ich en Aspekt ombenenne?"
+      restrict_posts_i_see_a: "Jo. Klick zerscht of \"Miini Aspekt\" eh de Siiteliischte ond denne klick einzelni Aspekt, om si abzwähle. Ahschlüssend wärde nor noh Biiträg vo Persone os de usgwählte Aspekte em Stream ahzeigt."
+      restrict_posts_i_see_q: "Chan ich d'Biiträg eh mim Stream of die vo bestemmte Aspekt beschränke?"
       title: "Aspekt"
       what_is_an_aspect_a: "Apekt sind e Möglichkeit dini diaspora*-Kontäkt z'gruppiere. Du chasch Aspekt nutze für Lüüt a dim Arbetsplatz, für dini Familie oder für dini Fründe."
       what_is_an_aspect_q: "Was isch en Aspekt?"
@@ -277,8 +288,33 @@ de-CH:
       title: "Tastaturchürzel"
     markdown: "Markdown"
     mentions:
+      how_to_mention_a: "Tipp s'ät(@) Zeiche ond fang ah ihre Name iizgeh. Es drop-down Menü sött erschiene zom dech eifacher en Person uszwähle loh. Due aber beachte, dass es nor möglich esch Lüt, wo du zo emene Aspekt henzuegfüegt hesch z'erwähne."
+      how_to_mention_q: "Wie duen ich öpper erwähne wenn ich en Biitrag mache?"
+      mention_in_comment_q: "Chan ich öpper emene Kommentar erwähne?"
+      see_mentions_a: "Jo, klick \"@Erwähnige\" eh de linke Spalte of dinere Startsiite."
+      see_mentions_q: "Isch es möglech die Biiträg ahzluege wo ich drinne erwähnt worde be?"
       title: "Erwähnige"
       what_is_a_mention_q: "Was isch en \"Erwähnig\"?"
+    pods:
+      find_people_a: "Wenn du dini Frönde wetsch ihlade ou zo Diaspora* z'cho, chasch du de Ihladigs Link oder de E-Mail Link eh de Siiteliischte benotze. Folg a #tags om anderi wo di gliiche interresse händ z'fende, ond die wo Sache veröffentleche wo dech interressiere chasch du zo dine Aspekt henzuefüege. Rüef us, dass du do neu besch (#newhere oder #neudo) emene öffentleche Biitrag.  "
+      find_people_q: "Ich be grad amene Pod biitrete. Wie chan ich Lüüt fende met dene Ich cha teile?"
+      title: "Pods"
+      use_search_box_q: "Wie benotz ich d'suechliischte om bestemmti Lüt z'fende?"
+      what_is_a_pod_a: "En Pod esch en Server wo d'Diaspora* Software droffe louft ond wo met em Diaspora* Netzwärch verbonde esch. \"Pod\" esch en Metapher för Hölse vo Pflanze, wo mehreri Sahme enthalte, so wie de Server verschednigi Benotzerkonte enthaltet. Es get verschednigi Pods. Sie chönne Kontäkt vo andere Pods henzuefüege ond met ehne Kommuniziere. Es esch ned nötig, Konte of verschednige Pods z'erschtelle! En einzige Pod esch gnueg - So gseh chönne Si sech Pods wie en E-Mail ahbieter vorstelle. Es get öffentlechi Pods, privati Pods, und met es betzeli Ufwand chöne si sogar ehre eigene Betriebe."
+      what_is_a_pod_q: "Was esch en Pod?"
+    posts_and_posting:
+      character_limit_a: "65,535 Zeiche. Das send 65,395 meh Zeiche als du be Twitter benotze chasch! ;)"
+      character_limit_q: "Was eschs s'Zeiche Limit för Biiträg?"
+      embed_multimedia_a: "Du chasch meischtens eifach d'URL inekopiere (zb. https://www.youtube.com/watch?v=nnnnnnnnnnn ) ond s'Audio oder s'Video werd automatisch iibettet. Onderstötzti Siite send onder anderem: YouTube, Vimeo, SoundCloud, Flickr ond es paar meh. Diaspora* benotzt oEmbed för die Fonktion. Es chöme ständig neui Siite dezue. Bitte beacht, immer nor eifachi ond vollständigi Links z'benotze: Keini gchörtzti Links; Kei zuesätzlechi Optione henter de Basis-URL; Ond wart nachem poste en chliine Moment, bevor du d'Siite aktualisiersch, om d'Vorschau z'erhalte."
+      embed_multimedia_q: "Wie chan ich es Video, Audio oder anderi Multimediainhalt eh emene Biitrag iibette?"
+      format_text_q: "Wie chan ich Text eh mim Biitrag formatiere (fett, korsiv, osw.)?"
+      hide_posts_q: "Wie mer en Biitrag cha verstecke?"
+      insert_images_a: "Dröck s'chliine Kamera Icon om es Beld eh din Biitrag iizfüege. Dröck s'Kamera Icon nomohl om es anders Beld iizfüege, oder du chasch ou meheri Belder zom gliichzitig ufelade uswähle."
+      insert_images_comments_q: "Chan ich Belder zo Kommentär henzuefüege?"
+      insert_images_q: "Wie chan ich Belder en min biitrag iifüege?"
+      size_of_images_a: "Nei. D'Beldergrössi werd outomatisch ahpasst, so dass d'Belder eh Stream passe. Markdown bietet keh Code, om d'Grössi vo emene Beld ahzgeh."
+      size_of_images_q: "Chan ich d'grössi vo Belder eh Biiträg oder Kommentäär verändere?"
+      title: "Biiträg ond Biiträg mache"
     third_party_tools: "Drittaawendige"
     tutorial: "Aaleitig"
     tutorials: "Aaleitige"
@@ -317,6 +353,9 @@ de-CH:
       logout: "Abmelde"
       profile: "Profil"
       settings: "Iistellige"
+  likes:
+    destroy:
+      error: "Gfallt mer nüme isch fehlgschlage."
   limited: "Begrenzt"
   more: "Meh"
   no_results: "Kei Ergebnis gfunde"
@@ -381,7 +420,7 @@ de-CH:
       other: "%{actors} hend agfange mit dir z'teile."
       zero: "Niemer het agfange mit dir z'teile."
   notifier:
-    a_limited_post_comment: "Es git en neue Kommentar zumene limitierte Biitrag uf diaspora*"
+    a_limited_post_comment: "Es git en neue Kommentar zumene begrenzte Biitrag uf diaspora*"
     a_post_you_shared: "en Biitrag."
     a_private_message: "Es git e neue pivati Nochricht für dich uf diaspora*"
     click_here: "druck do"
@@ -498,7 +537,7 @@ de-CH:
       gender: "Gschlächt"
       location: "Ort"
     show:
-      closed_account: "Dä Konto isch gschlosse worde."
+      closed_account: "Da Konto isch gschlosse worde."
       does_not_exist: "Die Person existiert nöd!"
       has_not_shared_with_you_yet: "%{name} het bis etz no kei Biiträg mit dir teilt!"
   photos:
@@ -574,6 +613,8 @@ de-CH:
     title: "Meldigsübersicht"
   reshares:
     comment_email_subject: "%{resharer} Reshare vo %{author}'s Biitrag"
+    create:
+      error: "Wiitersägä isch fehlgschlage"
     reshare:
       deleted: "Originalbiitrag isch vom Verfasser glöscht worde."
       reshare_confirmation: "%{author}'s Biitrag wiitersägä?"
@@ -601,8 +642,8 @@ de-CH:
       mobile_row_checked: "%{name} (entferne)"
       mobile_row_unchecked: "%{name} (hinzuefüege)"
       toggle:
-        one: "I %{count} aspekt"
-        other: "I %{count} aspekt"
+        one: "I %{count} Aspekt"
+        other: "I %{count} Aspekt"
     invitations:
       by_email: "Lad Lüüt per email ii"
       invite_your_friends: "Lad dini Kollege ii"
@@ -632,7 +673,6 @@ de-CH:
       posting: "Abschicke..."
       remove_location: "Standort entferne"
       share: "Teilä"
-      upload_photos: "Fotis Uelade"
       whats_on_your_mind: "Was lauft?"
     stream_element:
       via: "via %{link}"
@@ -670,18 +710,24 @@ de-CH:
     activity:
       title: "Mini Aktivitätä"
     aspects:
+      all: "Ali Aspekt"
       title: "Mini Aspekt"
     aspects_stream: "Aspekt"
     comment_stream:
       title: "Kommentierti Biiträg"
+    commented:
+      title: "Komentierti Biiträg"
     community_spotlight_stream: "Kommunity Schiiwörferliecht"
     followed_tag:
       add_a_tag: "En Tag hinzuefüege"
+      all: "Ali Tags"
       follow: "Folge"
-      title: "#tags wo du folgsch"
-    followed_tags_stream: "#tags wo du folgsch"
+      title: "#tags dene du folgsch"
+    followed_tags_stream: "#tags dene du folgsch"
     like_stream:
       title: "\"gfallt mer\"-Stream"
+    liked:
+      title: "Biiträg wo dir gfalled"
     mentioned_stream: "@Erwähnige"
     mentions:
       title: "@Erwähnige"
