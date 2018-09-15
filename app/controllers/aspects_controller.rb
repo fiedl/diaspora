@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
@@ -82,18 +84,6 @@ class AspectsController < ApplicationController
     head :no_content
   end
 
-  def toggle_contact_visibility
-    @aspect = current_user.aspects.where(:id => params[:aspect_id]).first
-
-    if @aspect.contacts_visible?
-      @aspect.contacts_visible = false
-    else
-      @aspect.contacts_visible = true
-    end
-    @aspect.save
-    head :no_content
-  end
-
   private
 
   def connect_person_to_aspect(aspecting_person_id)
@@ -107,6 +97,6 @@ class AspectsController < ApplicationController
   end
 
   def aspect_params
-    params.require(:aspect).permit(:name, :contacts_visible, :chat_enabled, :order_id)
+    params.require(:aspect).permit(:name, :chat_enabled, :order_id)
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # by "stream items" we mean everything that could appear in the stream - post, comment, like, poll, etc and therefore
 # could be send either publicly or privately
 shared_examples_for "messages which are indifferent about sharing fact" do
@@ -5,6 +7,15 @@ shared_examples_for "messages which are indifferent about sharing fact" do
 
   it "treats status message receive correctly" do
     entity = Fabricate(:status_message_entity, author: sender_id, public: public)
+
+    if public
+      expect(Diaspora::Federation::Dispatcher).to receive(:build) do |_user, participation, _opts|
+        expect(participation.target.guid).to eq(entity.guid)
+        instance_double(:dispatch)
+      end
+    else
+      expect(Diaspora::Federation::Dispatcher).not_to receive(:build)
+    end
 
     post_message(generate_payload(entity, sender, recipient), recipient)
 

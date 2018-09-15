@@ -67,6 +67,21 @@ en:
           attributes:
             poll:
               already_participated: "You’ve already participated in this poll!"
+  # Carrierwave error messages
+  errors:
+    messages:
+      carrierwave_processing_error: failed to be processed
+      carrierwave_integrity_error: is not of an allowed file type
+      carrierwave_download_error: could not be downloaded
+      extension_whitelist_error: "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}"
+      extension_blacklist_error: "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}"
+      content_type_whitelist_error: "You are not allowed to upload %{content_type} files"
+      content_type_blacklist_error: "You are not allowed to upload %{content_type} files"
+      rmagick_processing_error: "Failed to manipulate with rmagick, maybe it is not an image?"
+      mini_magick_processing_error: "Failed to manipulate with MiniMagick, maybe it is not an image? Original Error: %{e}"
+      min_size_error: "File size should be greater than %{min_size}"
+      max_size_error: "File size should be less than %{max_size}"
+
   error_messages:
     helper:
       correct_the_following_errors_and_try_again: "Correct the following errors and try again."
@@ -354,8 +369,6 @@ en:
       contacts_know_aspect_a: "No. They cannot see the name of the aspect under any circumstances."
       person_multiple_aspects_q: "Can I add a person to multiple aspects?"
       person_multiple_aspects_a: "Yes. Go to your contacts page and click on “My contacts”. For each contact you can use the menu on the right to add them to (or remove them from) as many aspects as you want. Or you can add them to a new aspect (or remove them from an aspect) by clicking the aspect selector button on their profile page. Or you can even just move the pointer over their name where you see it in the stream, and a “hovercard” will appear. You can change the aspects they are in right there."
-      contacts_visible_q: "What does “make contacts in this aspect visible to each other” mean?"
-      contacts_visible_a: "If you check this option then contacts from that aspect will be able to see who else is in it, in the “Contacts” tab on your profile page. (At the moment, only your contacts who are on the same pod as you will be able to see the “Contacts” tab on your profile.) It’s best to select this option only if the contacts in that aspect all know each other, for example if the aspect is for a club or society you belong to. They still won’t be able to see what the aspect is called."
       remove_notification_q: "If I remove someone from an aspect, or all of my aspects, are they notified of this?"
       remove_notification_a: "No. They are also not notified if you add them to more aspects, when you are already sharing with them."
       change_aspect_of_post_q: "Once I have posted something, can I change the aspect(s) that can see it?"
@@ -402,6 +415,10 @@ en:
       hide_posts_a: "If you point your mouse at the top of a post, an X appears on the right. Click it to hide the post and mute notifications about it. You can still see the post if you visit the profile page of the person who posted it."
       post_notification_q: "How do I get notifications, or stop getting notifications, about a post?"
       post_notification_a: "You will find a bell icon next to the X at the top right of a post. Click this to enable or disable notifications for that post."
+      ignore_user_q: "How do I stop someone’s posts from appearing in my stream?"
+      ignore_user_a1: "If you are currently sharing with that person, removing them from your aspects will stop many of their posts from appearing in your stream. A more complete method is to “ignore” that account. This will prevent any of their posts from appearing in your stream, and they will no longer be able to like or comment on your posts. They will, however, still be able to reshare your posts, comment on reshares of your posts, and their comments on posts by other people which appear in your stream will still be visible to you."
+      ignore_user_a2: "To ignore an account, click the “ignore” icon (a circle with a diagonal line through it) at the top right of one of their posts. Their posts will instantly disappear from your stream. Alternatively, go to their profile page and click the ignore icon there. You will still be able to see their posts on their profile page, or by using the single-post view."
+      ignore_user_a3: "A list of people you are ignoring can be found in your account settings under Privacy. To stop ignoring someone, remove them from the list on that page."
       post_report_q: "How do I report an offensive post?"
       post_report_a: "Click the alert triangle icon at the top right of the post to report it to your podmin. Enter a reason for reporting this post in the dialog box. Please only report posts that break our %{community_guidelines} or your pod’s terms of service, for example posts containing illegal content, or which are abusive or spam."
       character_limit_q: "What is the character limit for posts?"
@@ -417,7 +434,7 @@ en:
       size_of_images_q: "Can I customize the size of images in posts or comments?"
       size_of_images_a: "No. Images are resized automatically to fit the stream or single-post view. Markdown does not have a code for specifying the size of an image."
       embed_multimedia_q: "How do I embed a video, audio, or other multimedia content into a post?"
-      embed_multimedia_a: "You can usually just paste the URL (e.g. http://www.youtube.com/watch?v=nnnnnnnnnnn ) into your post and the video or audio will be embedded automatically. The sites supported include: YouTube, Vimeo, SoundCloud, Flickr and a few more. diaspora* uses oEmbed for this feature. We’re supporting more media sources all the time. Remember to always post simple, full links – no shortened links; no operators after the base URL – and give it a little time before you refresh the page after posting for seeing the preview."
+      embed_multimedia_a: "You can usually just paste the URL (e.g. http://www.youtube.com/watch?v=nnnnnnnnnnn ) into your post and the video or audio will be embedded automatically. The sites supported include: YouTube, Vimeo, SoundCloud, Flickr and a few more. diaspora* uses oEmbed for this feature. If you post a direct link to an audio or video file, diaspora* will embed it using standard HTML5 player. We’re supporting more media sources all the time. Remember to always post simple, full links – no shortened links; no operators after the base URL – and give it a little time before you refresh the page after posting for seeing the preview."
       post_location_q: "How do I add my location to a post?"
       post_location_a: "Click the pin icon next to the camera in the publisher. This will insert your location from OpenStreetMap. You can edit your location – you might only want to include the city you’re in rather than the specific street address."
       post_poll_q: "How do I add a poll to my post?"
@@ -623,6 +640,10 @@ en:
       zero: "%{actors} have reshared your post %{post_link}."
       one: "%{actors} has reshared your post %{post_link}."
       other: "%{actors} have reshared your post %{post_link}."
+    contacts_birthday:
+      zero: "%{actors} have their birthday on %{date}."
+      one: "%{actors} has their birthday on %{date}."
+      other: "%{actors} have their birthday on %{date}."
     also_commented_deleted:
       zero: "%{actors} commented on a deleted post."
       one: "%{actors} commented on a deleted post."
@@ -657,6 +678,7 @@ en:
       mentioned_in_comment: "Mentioned in comment"
       reshared: "Reshared"
       started_sharing: "Started sharing"
+      contacts_birthday: "Birthday"
       no_notifications: "You don't have any notifications yet."
       and_others:
         zero: "and nobody else"
@@ -704,6 +726,10 @@ en:
     reshared:
         reshared: "%{name} reshared your post"
         view_post: "View post >"
+    contacts_birthday:
+        subject: "%{name} has their birthday today"
+        birthday: "%{name} has their birthday today. Wish them 'Happy Birthday'!"
+        view_profile: "View %{name}’s profile"
     confirm_email:
         subject: "Please activate your new email address %{unconfirmed_email}"
         click_link: "To activate your new email address %{unconfirmed_email}, please follow this link:"
@@ -943,9 +969,9 @@ en:
 
   report:
     title: "Reports overview"
-    post_label: "<b>Post</b>: %{content}"
-    comment_label: "<b>Comment</b>: %{data}"
-    reported_label: "<b>Reported by</b> %{person}"
+    post_label: "<strong>Post</strong>: %{content}"
+    comment_label: "<strong>Comment</strong>: %{data}"
+    reported_label: "<strong>Reported by</strong> %{person}"
     reason_label: "Reason:"
     review_link: "Mark as reviewed"
     delete_link: "Delete item"
@@ -1097,6 +1123,7 @@ en:
     new:
       mentioning: "Mentioning: %{person}"
     too_long: "Please make your status message fewer than %{count} characters. Right now it is %{current_length} characters"
+    bad_aspects: "Provided aspects IDs aren't applicable (non-existent or not owned)"
 
   stream_helper:
     no_more_posts: "You have reached the end of the stream."
@@ -1206,12 +1233,13 @@ en:
       comment_on_post: "someone comments on your post"
       also_commented: "someone comments on a post you’ve commented on"
       private_message: "you receive a private message"
+      birthday: "someone has their birthday"
       download_export: "Download my profile"
       request_export: "Request my profile data"
       request_export_update: "Refresh my profile data"
       export_data: "Export data"
       export_in_progress: "We are currently processing your data. Please check back in a few moments."
-      last_exported_at: "(Last updated at %{timestamp})"
+      last_exported_html: "(Last updated %{timeago})"
       download_export_photos: "Download my photos"
       request_export_photos: "Request my photos"
       request_export_photos_update: "Refresh my photos"

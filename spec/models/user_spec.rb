@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
@@ -563,16 +565,11 @@ describe User, :type => :model do
     end
   end
 
-  describe 'account deletion' do
-    describe '#destroy' do
-      it 'removes all service connections' do
-        Services::Facebook.create(:access_token => 'what', :user_id => alice.id)
-        expect {
-          alice.destroy
-        }.to change {
-          alice.services.count
-        }.by(-1)
-      end
+  describe "#destroy" do
+    it "raises error" do
+      expect {
+        alice.destroy
+      }.to raise_error "Never destroy users!"
     end
   end
 
@@ -947,6 +944,17 @@ describe User, :type => :model do
         expect(@user.reload.show_community_spotlight_in_stream).to be false
         expect(@user.reload.post_default_public).to be false
       end
+
+      it "removes export archives" do
+        @user.perform_export!
+        @user.perform_export_photos!
+        @user.clear_account!
+        @user.reload
+        expect(@user.export).not_to be_present
+        expect(@user.exported_at).to be_nil
+        expect(@user.exported_photos_file).not_to be_present
+        expect(@user.exported_photos_at).to be_nil
+      end
     end
 
     describe "#clearable_attributes" do
@@ -973,9 +981,22 @@ describe User, :type => :model do
             last_seen
             color_theme
             post_default_public
+            exported_at
+            exported_photos_at
           )
         )
       end
+    end
+  end
+
+  describe "#export" do
+    it "doesn't change the filename when the user is saved" do
+      user = FactoryGirl.create(:user)
+
+      filename = user.export.filename
+      user.save!
+
+      expect(User.find(user.id).export.filename).to eq(filename)
     end
   end
 

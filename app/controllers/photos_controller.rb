@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
@@ -29,7 +31,6 @@ class PhotosController < ApplicationController
         format.all do
           gon.preloads[:person] = @presenter.as_json
           gon.preloads[:photos_count] = Photo.visible(current_user, @person).count(:all)
-          gon.preloads[:contacts_count] = Contact.contact_contacts_for(current_user, @person).count(:all)
           render "people/show", layout: "with_header"
         end
         format.mobile { render "people/show" }

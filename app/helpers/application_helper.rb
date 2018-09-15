@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
@@ -15,8 +17,9 @@ module ApplicationHelper
     return AppConfig.settings.changelog_url.get if AppConfig.settings.changelog_url.present?
 
     url = "https://github.com/diaspora/diaspora/blob/master/Changelog.md"
-    url.sub!('/master/', "/#{AppConfig.git_revision}/") if AppConfig.git_revision.present?
-    url
+    return url if AppConfig.git_revision.blank?
+
+    url.sub("/master/", "/#{AppConfig.git_revision}/")
   end
 
   def source_url
@@ -41,6 +44,10 @@ module ApplicationHelper
 
   def all_services_connected?
     current_user.services.size == AppConfig.configured_services.size
+  end
+
+  def service_unconnected?(service)
+    AppConfig.show_service?(service, current_user) && current_user.services.none? {|x| x.provider == service }
   end
 
   def popover_with_close_html(without_close_html)

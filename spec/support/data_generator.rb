@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This is a helper class for tests that is capable of generating different sets of data, which are possibly
 # interrelated.
 class DataGenerator
@@ -168,7 +170,7 @@ class DataGenerator
   end
 
   def work_aspect
-    user.aspects.create(name: "Work", contacts_visible: false)
+    user.aspects.create(name: "Work")
   end
 
   def status_messages_flavours

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "integration/federation/federation_helper"
 require "integration/federation/shared_receive_relayable"
 require "integration/federation/shared_receive_retraction"
@@ -56,11 +58,12 @@ describe "Receive federation messages feature" do
           expect(AccountMigration.find_by(old_person: sender.person, new_person: new_user.person)).to be_performed
         end
 
-        it "doesn't accept the same migration for the second time" do
+        it "doesn't run the same migration for the second time" do
           run_migration
-          expect {
-            run_migration
-          }.to raise_error(ActiveRecord::RecordInvalid)
+          expect_any_instance_of(AccountMigration).not_to receive(:perform!)
+          run_migration
+          expect(AccountMigration.where(old_person: sender.person, new_person: new_user.person).count).to eq(1)
+          expect(AccountMigration.find_by(old_person: sender.person, new_person: new_user.person)).to be_performed
         end
 
         it "doesn't accept second migration for the same sender" do
@@ -112,6 +115,11 @@ describe "Receive federation messages feature" do
         expect(Participation::Generator).to receive(:new).with(
           alice, instance_of(Reshare)
         ).and_return(double(create!: true))
+
+        expect(Diaspora::Federation::Dispatcher).to receive(:build) do |_user, participation, _opts|
+          expect(participation.target.guid).to eq(reshare.guid)
+          instance_double(:dispatch)
+        end
 
         post_message(generate_payload(reshare, sender))
 

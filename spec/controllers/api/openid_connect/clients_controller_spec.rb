@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Api::OpenidConnect::ClientsController, type: :controller, suppress_csrf_verification: :none do
   describe "#create" do
     context "when valid parameters are passed" do
@@ -6,7 +8,7 @@ describe Api::OpenidConnect::ClientsController, type: :controller, suppress_csrf
           .with(headers: {
                   "Accept"          => "*/*",
                   "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-                  "User-Agent"      => "Faraday v0.11.0"
+                  "User-Agent"      => "Faraday v0.12.2"
                 })
           .to_return(status: 200, body: "[\"http://localhost\"]", headers: {})
         post :create, params: {redirect_uris: ["http://localhost"], client_name: "diaspora client",
@@ -26,7 +28,7 @@ describe Api::OpenidConnect::ClientsController, type: :controller, suppress_csrf
           .with(headers: {
                   "Accept"          => "*/*",
                   "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-                  "User-Agent"      => "Faraday v0.11.0"
+                  "User-Agent"      => "Faraday v0.12.2"
                 })
           .to_return(status: 200, body: "[\"http://localhost\"]", headers: {})
         post :create, params: {redirect_uris: ["http://localhost"], client_name: "diaspora client",
@@ -87,14 +89,14 @@ describe Api::OpenidConnect::ClientsController, type: :controller, suppress_csrf
           .with(headers: {
                   "Accept"          => "*/*",
                   "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-                  "User-Agent"      => "Faraday v0.11.0"
+                  "User-Agent"      => "Faraday v0.12.2"
                 })
           .to_return(status: 200, body: "[\"http://localhost\"]", headers: {})
         stub_request(:get, "https://kentshikama.com/api/openid_connect/jwks.json")
           .with(headers: {
                   "Accept"          => "*/*",
                   "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-                  "User-Agent"      => "Faraday v0.11.0"
+                  "User-Agent"      => "Faraday v0.12.2"
                 })
           .to_return(status: 200,
                      body: "{\"keys\":[{\"kty\":\"RSA\",\"e\":\"AQAB\",\"n\":\"qpW\",\"use\":\"sig\"}]}", headers: {})

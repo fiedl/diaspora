@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Diaspora
   module Federation
     module Entities
@@ -29,6 +31,16 @@ module Diaspora
         )
       end
 
+      def self.block(block)
+        DiasporaFederation::Entities::Contact.new(
+          author:    block.user.diaspora_handle,
+          recipient: block.person.diaspora_handle,
+          sharing:   false,
+          following: false,
+          blocking:  Block.exists?(user: block.user, person: block.person)
+        )
+      end
+
       def self.comment(comment)
         DiasporaFederation::Entities::Comment.new(
           {
@@ -37,6 +49,7 @@ module Diaspora
             parent_guid:      comment.post.guid,
             text:             comment.text,
             created_at:       comment.created_at,
+            edited_at:        comment.signature&.additional_data&.[]("edited_at"),
             author_signature: comment.signature.try(:author_signature),
             parent:           related_entity(comment.post)
           },
@@ -50,7 +63,8 @@ module Diaspora
           author:    contact.user.diaspora_handle,
           recipient: contact.person.diaspora_handle,
           sharing:   contact.receiving,
-          following: contact.receiving
+          following: contact.receiving,
+          blocking:  Block.exists?(user: contact.user, person: contact.person)
         )
       end
 
@@ -156,6 +170,7 @@ module Diaspora
       def self.profile(profile)
         DiasporaFederation::Entities::Profile.new(
           author:           profile.diaspora_handle,
+          edited_at:        profile.updated_at,
           first_name:       profile.first_name,
           last_name:        profile.last_name,
           image_url:        profile.image_url,
@@ -174,13 +189,11 @@ module Diaspora
 
       def self.reshare(reshare)
         DiasporaFederation::Entities::Reshare.new(
-          root_author:           reshare.root_diaspora_id,
-          root_guid:             reshare.root_guid,
-          author:                reshare.diaspora_handle,
-          guid:                  reshare.guid,
-          public:                reshare.public,
-          created_at:            reshare.created_at,
-          provider_display_name: reshare.provider_display_name
+          root_author: reshare.root_diaspora_id,
+          root_guid:   reshare.root_guid,
+          author:      reshare.diaspora_handle,
+          guid:        reshare.guid,
+          created_at:  reshare.created_at
         )
       end
 

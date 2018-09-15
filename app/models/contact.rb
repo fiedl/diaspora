@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
@@ -44,7 +46,7 @@ class Contact < ApplicationRecord
       type:         "Notifications::StartedSharing"
     ).destroy_all
   end
-  
+
   def incoming_aspects
     Aspect.where(
           :user_id => self.person.owner_id,
@@ -73,17 +75,6 @@ class Contact < ApplicationRecord
       aspects.detect{ |a| a.id == aspect.id }
     else
       AspectMembership.exists?(:contact_id => self.id, :aspect_id => aspect.id)
-    end
-  end
-
-  def self.contact_contacts_for(user, person)
-    return none unless user
-
-    if person == user.person
-      user.contact_people
-    else
-      contact = user.contact_for(person)
-      contact.try(:contacts) || none
     end
   end
 

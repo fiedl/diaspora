@@ -1,3 +1,159 @@
+# 0.7.6.0
+
+## Refactor
+* Add unique index to poll participations on `poll_id` and `author_id` [#7798](https://github.com/diaspora/diaspora/pull/7798)
+* Add 'completed at' date to account migrations [#7805](https://github.com/diaspora/diaspora/pull/7805)
+* Handle duplicates for TagFollowing on account merging [#7807](https://github.com/diaspora/diaspora/pull/7807)
+* Add link to the pod in the email footer [#7814](https://github.com/diaspora/diaspora/pull/7814)
+
+## Bug fixes
+* Fix compatibility with newer glibc versions [#7828](https://github.com/diaspora/diaspora/pull/7828)
+* Allow fonts to be served from asset host in CSP [#7825](https://github.com/diaspora/diaspora/pull/7825)
+
+## Features
+* Support fetching StatusMessage by Poll GUID [#7815](https://github.com/diaspora/diaspora/pull/7815)
+* Always include link to diaspora in facebook cross-posts [#7774](https://github.com/diaspora/diaspora/pull/7774)
+
+# 0.7.5.0
+
+## Refactor
+* Remove the 'make contacts in this aspect visible to each other' option [#7769](https://github.com/diaspora/diaspora/pull/7769)
+* Remove the requirement to have at least two users to disable the /podmin redirect [#7783](https://github.com/diaspora/diaspora/pull/7783)
+* Randomize start times of daily Sidekiq-Cron jobs [#7787](https://github.com/diaspora/diaspora/pull/7787)
+
+## Bug fixes
+* Prefill conversation form on contacts page only with mutual contacts [#7744](https://github.com/diaspora/diaspora/pull/7744)
+* Fix profiles sometimes not loading properly in background tabs [#7740](https://github.com/diaspora/diaspora/pull/7740)
+* Show error message when creating posts with invalid aspects [#7742](https://github.com/diaspora/diaspora/pull/7742)
+* Fix mention syntax backport for two immediately consecutive mentions [#7777](https://github.com/diaspora/diaspora/pull/7777)
+* Fix link to 'make yourself an admin' [#7783](https://github.com/diaspora/diaspora/pull/7783)
+* Fix calculation of content lengths when cross-posting to twitter [#7791](https://github.com/diaspora/diaspora/pull/7791)
+
+## Features
+* Make public stream accessible for logged out users [#7775](https://github.com/diaspora/diaspora/pull/7775)
+* Add account-merging support when receiving an account migration [#7803](https://github.com/diaspora/diaspora/pull/7803)
+
+# 0.7.4.1
+
+Fixes a possible cross-site scripting issue with maliciously crafted OpenGraph metadata.
+
+# 0.7.4.0
+
+## Refactor
+* Don't print a warning when starting the server outside a Git repo [#7712](https://github.com/diaspora/diaspora/pull/7712)
+* Make script/server work on readonly filesystems [#7719](https://github.com/diaspora/diaspora/pull/7719)
+* Add camo paths to the robots.txt [#7726](https://github.com/diaspora/diaspora/pull/7726)
+
+## Bug fixes
+* Prevent duplicate mention notifications when the post is received twice [#7721](https://github.com/diaspora/diaspora/pull/7721)
+* Fixed a compatiblitiy issue with non-diaspora\* webfingers [#7718](https://github.com/diaspora/diaspora/pull/7718)
+* Don't retry federation for accounts without a valid public key [#7717](https://github.com/diaspora/diaspora/pull/7717)
+* Fix stream generation for tagged posts with many followed tags [#7715](https://github.com/diaspora/diaspora/pull/7715)
+* Fix incomplete Occitan date localizations [#7731](https://github.com/diaspora/diaspora/pull/7731)
+
+## Features
+* Add basic html5 audio/video embedding support [#6418](https://github.com/diaspora/diaspora/pull/6418)
+* Add the back-to-top button to all pages [#7729](https://github.com/diaspora/diaspora/pull/7729)
+
+# 0.7.3.1
+
+Re-updating the German translations to fix some UX issues that were introduced by recent translation efforts.
+
+# 0.7.3.0
+
+## Refactor
+* Work on the data downloads: Fixed general layout of buttons, added a timestamp and implemented auto-deletion of old exports [#7684](https://github.com/diaspora/diaspora/pull/7684)
+* Increase Twitter character limit to 280 [#7694](https://github.com/diaspora/diaspora/pull/7694)
+* Improve password autocomplete with password managers [#7642](https://github.com/diaspora/diaspora/pull/7642)
+* Remove the limit of participants in private conversations [#7705](https://github.com/diaspora/diaspora/pull/7705)
+* Send blocks to the blocked persons pod for better UX [#7705](https://github.com/diaspora/diaspora/pull/7705)
+* Send a dummy participation on all incoming public posts to increase interaction consistency [#7708](https://github.com/diaspora/diaspora/pull/7708)
+
+## Bug fixes
+* Fix invite link on the contacts page when the user has no contacts [#7690](https://github.com/diaspora/diaspora/pull/7690)
+* Fix the mobile bookmarklet when called without parameters [#7698](https://github.com/diaspora/diaspora/pull/7698)
+* Properly build the #newhere message for people who got invited [#7702](https://github.com/diaspora/diaspora/pull/7702)
+* Fix the admin report view for posts without text [#7706](https://github.com/diaspora/diaspora/pull/7706)
+* Upgrade Nokogiri to fix [a disclosed vulnerability in libxml2](https://github.com/sparklemotion/nokogiri/issues/1714)
+
+## Features
+* Check if redis is running in script/server [#7685](https://github.com/diaspora/diaspora/pull/7685)
+
+# 0.7.2.1
+
+Fixes notifications when people remove their birthday date [#7691](https://github.com/diaspora/diaspora/pull/7691)
+
+# 0.7.2.0
+
+## Bug fixes
+* Ignore invalid `diaspora://` links [#7652](https://github.com/diaspora/diaspora/pull/7652)
+* Fix deformed avatar in hovercards [#7656](https://github.com/diaspora/diaspora/pull/7656)
+* Fix default aspects on profile page and bookmarklet publisher [#7679](https://github.com/diaspora/diaspora/issues/7679)
+
+## Features
+* Add birthday notifications [#7624](https://github.com/diaspora/diaspora/pull/7624)
+
+# 0.7.1.1
+
+Fixes an issue with installing and running diaspora\* with today released bundler v1.16.0.
+
+# 0.7.1.0
+
+## Ensure account deletions are run
+
+There were some issues causing accounts deletions to not properly perform in some cases, see
+[#7631](https://github.com/diaspora/diaspora/issues/7631) and [#7639](https://github.com/diaspora/diaspora/pull/7639).
+To ensure these are reexecuted properly, please run `RAILS_ENV=production bin/rake migrations:run_account_deletions`
+after you've upgraded.
+
+## Refactor
+* Remove title from profile photo upload button [#7551](https://github.com/diaspora/diaspora/pull/7551)
+* Remove Internet Explorer workarounds [#7557](https://github.com/diaspora/diaspora/pull/7557)
+* Sort notifications by last interaction [#7568](https://github.com/diaspora/diaspora/pull/7568) [#7648](https://github.com/diaspora/diaspora/pull/7648)
+* Remove tiff support from photos [#7576](https://github.com/diaspora/diaspora/pull/7576)
+* Remove reference from reshares when original post is deleted [#7578](https://github.com/diaspora/diaspora/pull/7578)
+* Merge migrations from before 0.6.0.0 to CreateSchema [#7580](https://github.com/diaspora/diaspora/pull/7580)
+* Remove auto detection of languages with highlightjs [#7591](https://github.com/diaspora/diaspora/pull/7591)
+* Move enable/disable notification icon [#7592](https://github.com/diaspora/diaspora/pull/7592)
+* Use Bootstrap 3 progress-bar for polls [#7600](https://github.com/diaspora/diaspora/pull/7600)
+* Enable frozen string literals [#7595](https://github.com/diaspora/diaspora/pull/7595)
+* Remove `rails_admin_histories` table [#7597](https://github.com/diaspora/diaspora/pull/7597)
+* Optimize memory usage on profile export [#7627](https://github.com/diaspora/diaspora/pull/7627)
+* Limit the number of parallel exports [#7629](https://github.com/diaspora/diaspora/pull/7629)
+* Reduce memory usage for account deletion [#7639](https://github.com/diaspora/diaspora/pull/7639)
+
+## Bug fixes
+* Fix displaying polls with long answers [#7579](https://github.com/diaspora/diaspora/pull/7579)
+* Fix S3 support [#7566](https://github.com/diaspora/diaspora/pull/7566)
+* Fix mixed username and timestamp with LTR/RTL scripts [#7575](https://github.com/diaspora/diaspora/pull/7575)
+* Prevent users from zooming in IE Mobile [#7589](https://github.com/diaspora/diaspora/pull/7589)
+* Fix recipient prefill on contacts and profile page [#7599](https://github.com/diaspora/diaspora/pull/7599)
+* Display likes and reshares without login [#7583](https://github.com/diaspora/diaspora/pull/7583)
+* Fix invalid data in the database for user data export [#7614](https://github.com/diaspora/diaspora/pull/7614)
+* Fix local migration run without old private key [#7558](https://github.com/diaspora/diaspora/pull/7558)
+* Fix export not downloadable because the filename was resetted on access [#7622](https://github.com/diaspora/diaspora/pull/7622)
+* Delete invalid oEmbed caches with binary titles [#7620](https://github.com/diaspora/diaspora/pull/7620)
+* Delete invalid diaspora IDs from friendica [#7630](https://github.com/diaspora/diaspora/pull/7630)
+* Cleanup relayables where the signature is missing [#7637](https://github.com/diaspora/diaspora/pull/7637)
+* Avoid page to jump to top after a post deletion [#7638](https://github.com/diaspora/diaspora/pull/7638)
+* Handle duplicate account deletions [#7639](https://github.com/diaspora/diaspora/pull/7639)
+* Handle duplicate account migrations [#7641](https://github.com/diaspora/diaspora/pull/7641)
+* Handle bugs related to missing users [#7632](https://github.com/diaspora/diaspora/pull/7632)
+* Cleanup empty signatures [#7644](https://github.com/diaspora/diaspora/pull/7644)
+
+## Features
+* Ask for confirmation when leaving a submittable comment field [#7530](https://github.com/diaspora/diaspora/pull/7530)
+* Show users vote in polls [#7550](https://github.com/diaspora/diaspora/pull/7550)
+* Add explanation of ignore function to in-app help section [#7585](https://github.com/diaspora/diaspora/pull/7585)
+* Add camo information to NodeInfo [#7617](https://github.com/diaspora/diaspora/pull/7617)
+* Add support for `diaspora://` links [#7625](https://github.com/diaspora/diaspora/pull/7625)
+* Add support to relay likes for comments [#7625](https://github.com/diaspora/diaspora/pull/7625)
+* Implement RFC 7033 WebFinger [#7625](https://github.com/diaspora/diaspora/pull/7625)
+
+# 0.7.0.1
+
+Update nokogiri to fix [multiple libxml2 vulnerabilities](https://usn.ubuntu.com/usn/usn-3424-1/).
+
 # 0.7.0.0
 
 ## Supported Ruby versions

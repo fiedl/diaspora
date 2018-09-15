@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe Diaspora::Mentionable do
   include PeopleHelper
 
@@ -212,6 +214,13 @@ STR
     it "replaces the new syntax with the old syntax" do
       text = "mention @{#{people[0].diaspora_handle}} text"
       expected_text = "mention @{#{people[0].name}; #{people[0].diaspora_handle}} text"
+      expect(Diaspora::Mentionable.backport_mention_syntax(text)).to eq(expected_text)
+    end
+
+    it "replaces the new syntax with the old syntax for immediately consecutive mentions" do
+      text = "mention @{#{people[0].diaspora_handle}}@{#{people[1].diaspora_handle}} text"
+      expected_text = "mention @{#{people[0].name}; #{people[0].diaspora_handle}}" \
+        "@{#{people[1].name}; #{people[1].diaspora_handle}} text"
       expect(Diaspora::Mentionable.backport_mention_syntax(text)).to eq(expected_text)
     end
 

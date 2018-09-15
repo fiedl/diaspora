@@ -84,7 +84,6 @@ nl:
         add_a_new_aspect: "Nieuw aspect toevoegen"
         failure: "Creëren aspect mislukt."
         success: "Je nieuwe aspect <%= name %> is gecreëerd"
-      make_aspect_list_visible: "Contacten in dit aspect zichtbaar maken voor elkaar?"
       name: "Naam"
     bookmarklet:
       post_something: "Plaatsen op diaspora*"
@@ -102,18 +101,20 @@ nl:
       add_contact: "Toevoegen contact"
       aspect_chat_is_enabled: "Contactpersonen in dit aspect kunnen met jou chatten."
       aspect_chat_is_not_enabled: "Contactpersonen in dit aspect kunnen niet met jou chatten."
-      aspect_list_is_not_visible: "Contactpersonen in dit aspect kunnen elkaar niet zien."
-      aspect_list_is_visible: "Contactpersonen in dit aspect kunnen elkaar zien."
       error_add: "Kon <%= name %> niet toevoegen aan het aspect :("
       error_remove: "Kon <%= name %> niet verwijderen uit het aspect :("
       remove_contact: "Verwijder contact"
       search_no_results: "geen contactpersonen gevonden"
     conversation:
+      create:
+        no_recipient: "Hé, je moet eerst een ontvanger toevoegen!"
       new:
         no_contacts: "Je moet een paar contactpersonen opgeven om een conversatie te kunnen starten."
     create: "Creëren"
     delete: "Verwijder"
     edit: "Bewerken"
+    errors:
+      connection: "Geen verbinding met de server."
     failed_to_post_message: "Bericht plaatsen mislukt!"
     failed_to_remove: "Kon het bericht niet verwijderen!"
     getting_started:
@@ -184,11 +185,11 @@ nl:
       result: "Resultaat"
       show_result: "Toon resultaat"
       vote: "Stem"
+      your_vote: "Jouw stem"
     profile:
       add_some: "Voeg wat toe"
       bio: "Bio"
       born: "Verjaardag"
-      contacts: "Contacten"
       edit: "Bewerken"
       gender: "Geslacht"
       location: "Locatie"
@@ -202,7 +203,10 @@ nl:
         texts:
           code: "code hier"
           heading: "Koptekst"
+          insert_image_description_text: "geef afbeelding beschrijving hier"
+          insert_image_help_text: "Voeg afbeelding link hier in"
           insert_image_title: "voeg hier afbeeldingstekst in"
+          insert_link_help_text: "Voeg link hier in"
           italic: "Cursieve tekst"
           list: "lijst tekst hier"
           quote: "quote hier"
@@ -221,6 +225,7 @@ nl:
           quote: "Invoegen quote"
           write: "Bewerk bericht"
         write: "Schrijven"
+      mention_success: "Succesvol vermeld: <%= names %>"
       near_from: "Geplaatst vanaf: <%= location %>"
       option: "Keuze <%= nr %>"
       question: "Vraag"
@@ -235,9 +240,14 @@ nl:
     reshares:
       post: "Doorgeven <%= name %>'s bericht?"
       successful: "Het bericht is gedeeld!"
+    show_all: "Toon alle"
     show_more: "Laat meer zien"
     stream:
       comment: "Reageren"
+      comments:
+        one: "<%= count %> reactie"
+        other: "<%= count %> reacties"
+        zero: "<%= count %> reacties"
       disable_post_notifications: "Uitschakelen meldingen voor dit bericht"
       enable_post_notifications: "Inschakelen meldingen voor dit bericht"
       follow: "Volgen"
@@ -257,6 +267,7 @@ nl:
         one: "Toon nog <%= count %> reactie"
         other: "Toon nog <%= count %> reacties"
         zero: "Toon nog <%= count %> reacties"
+      no_posts_yet: "Er zijn nog geen berichten om hier weer te geven."
       original_post_deleted: "Originele bericht verwijderd door de auteur."
       permalink: "Permalink"
       public: "Openbaar"

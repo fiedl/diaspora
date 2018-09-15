@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
@@ -90,6 +92,10 @@ class User < ApplicationRecord
 
   after_save :remove_invalid_unconfirmed_emails
 
+  before_destroy do
+    raise "Never destroy users!"
+  end
+
   def self.all_sharing_with_person(person)
     User.joins(:contacts).where(:contacts => {:person_id => person.id})
   end
@@ -178,7 +184,7 @@ class User < ApplicationRecord
       if pref_hash[key] == 'true'
         self.user_preferences.find_or_create_by(email_type: key)
       else
-        block = self.user_preferences.where(:email_type => key).first
+        block = user_preferences.find_by(email_type: key)
         if block
           block.destroy
         end
@@ -291,9 +297,9 @@ class User < ApplicationRecord
   # @return [Like]
   def like_for(target)
     if target.likes.loaded?
-      return target.likes.detect{ |like| like.author_id == self.person.id }
+      target.likes.find {|like| like.author_id == person.id }
     else
-      return Like.where(:author_id => self.person.id, :target_type => target.class.base_class.to_s, :target_id => target.id).first
+      Like.find_by(author_id: person.id, target_type: target.class.base_class.to_s, target_id: target.id)
     end
   end
 
@@ -535,6 +541,8 @@ class User < ApplicationRecord
      :post_default_public].each do |field|
       self[field] = false
     end
+    self.remove_export = true
+    self.remove_exported_photos_file = true
     self[:disable_mail] = true
     self[:strip_exif] = true
     self[:email] = "deletedaccount_#{self[:id]}@example.org"
@@ -575,7 +583,7 @@ class User < ApplicationRecord
     attributes.keys - %w(id username encrypted_password created_at updated_at locked_at
                          serialized_private_key getting_started
                          disable_mail show_community_spotlight_in_stream
-                         strip_exif email remove_after export exporting exported_at
-                         exported_photos_file exporting_photos exported_photos_at)
+                         strip_exif email remove_after export exporting
+                         exported_photos_file exporting_photos)
   end
 end

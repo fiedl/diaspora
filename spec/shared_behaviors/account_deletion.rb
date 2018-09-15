@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
@@ -42,8 +44,6 @@ shared_examples_for "it removes the person associations" do
 end
 
 shared_examples_for "it keeps the person conversations" do
-  RSpec::Matchers.define_negated_matcher :remain, :change
-
   it "remains the person conversations" do
     expect {
       account_removal_method

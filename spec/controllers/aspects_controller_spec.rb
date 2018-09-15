@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
@@ -152,24 +154,6 @@ describe AspectsController, :type => :controller do
         expect(flash[:notice]).to eq(I18n.t("aspects.destroy.success_auto_follow_back", name: @alices_aspect_1.name))
         expect(flash[:error]).to be_blank
       end
-    end
-  end
-
-  describe "#toggle_contact_visibility" do
-    it 'sets contacts visible' do
-      @alices_aspect_1.contacts_visible = false
-      @alices_aspect_1.save
-
-      get :toggle_contact_visibility, xhr: true, params: {aspect_id: @alices_aspect_1.id}
-      expect(@alices_aspect_1.reload.contacts_visible).to be true
-    end
-
-    it 'sets contacts hidden' do
-      @alices_aspect_1.contacts_visible = true
-      @alices_aspect_1.save
-
-      get :toggle_contact_visibility, xhr: true, params: {aspect_id: @alices_aspect_1.id}
-      expect(@alices_aspect_1.reload.contacts_visible).to be false
     end
   end
 end

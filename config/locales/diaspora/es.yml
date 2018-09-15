@@ -336,6 +336,19 @@ es:
     helper:
       correct_the_following_errors_and_try_again: "Corrige los siguientes errores e inténtalo de nuevo."
     need_javascript: "Esta web necesita JavaScript para funcionar correctamente. Si lo desactivaste, por favor actívalo y actualiza la página."
+  errors:
+    messages:
+      carrierwave_download_error: "no se pudo descargar"
+      carrierwave_integrity_error: "no se permite este tipo de archivo"
+      carrierwave_processing_error: "falló al procesar"
+      content_type_blacklist_error: "No se permite subir archivos %{content_type}"
+      content_type_whitelist_error: "No se permite subir archivos %{content_type}"
+      extension_blacklist_error: "No está permitido subir archivos %{extension}, los formatos no permitidos son %{prohibited_types}"
+      extension_whitelist_error: "No tienes permiso subir archivos de tipo %{extension}, los formatos permitidos son %{allowed_types}"
+      max_size_error: "El tamaño del archivo debe ser menor que %{max_size}"
+      min_size_error: "El tamaño del archivo debe ser mayor que %{min_size}"
+      mini_magick_processing_error: "Error al procesar con MiniMagick, ¿tal vez no es una imagen? Error original: %{e}"
+      rmagick_processing_error: "Error al procesar con rmagick, ¿tal vez no es una imagen?"
   fill_me_out: "Complétame"
   find_people: "Encuentra gente o #etiquetas"
   help:
@@ -356,8 +369,6 @@ es:
       change_aspect_of_post_q: "Una ves que he publicado algo, puedo cambiar el(los) aspectos que pueden verlo?"
       contacts_know_aspect_a: "No. Tus contactos no pueden ver el nombre del aspecto bajo ninguna circunstancia."
       contacts_know_aspect_q: "¿Mis contactos pueden saber en que aspecto los he situado?"
-      contacts_visible_a: "Si marcas esta opción entonces los contactos de ese aspecto estarán habilitados para ver quien mas está en el, en tu pagina de perfil, bajo tu foto. Es mejor seleccionar esta opción solo si todos los contactos en ese aspecto se conocen. Ellos aún asi no podrán ver como se llama el aspecto."
-      contacts_visible_q: "¿Que significa \"Hacer los contactos en este aspecto visibles entre sí\"?"
       delete_aspect_a: "En tu lista de aspectos en el lado izquierdo de la pagina principal, apunta tu mouse al aspecto que quieras eliminar. Haz click en el pequeño lapiz \"editar\" que aparezca en la derecha. Haz click en el boton eliminar en la caja que aparecera."
       delete_aspect_q: "¿Cómo borro un aspecto?"
       person_multiple_aspects_a: "Sí. Ve a la página de tus contactos y haz click en \"mis contactos\". Para cada contacto puedes usar el menu de la derecha para agregarlos a (o remover de) cuantos aspectos quieras. O puedes agregarlos (o removerlos) a un nuevo aspecto al hacer click en el boton de selección de aspecto en su pagina de perfil. O puedes incluso mover el puntero sobre su nombre cuando los veas en el flujo, y una carta flotante aparecera. Puedes cambiar los aspectos en los cuales están directamente de ahí."
@@ -414,6 +425,7 @@ es:
     mentions:
       how_to_mention_a: "Escribe \"@\" y empieza a escribir su(s) nombre(s). Debería aparecer un menú desplegable para ayudarte en la selección. Ten en cuenta que solo es posible mencionar personas a aquellas personas que se encuentren en tus aspectos."
       how_to_mention_q: "¿Cómo puedo mencionar a alguien cuando hago una publicación?"
+      mention_in_comment_a: "Desde la versión 0.7.0.0, ¡sí! Puedes mencionar a alguien en un comentario del mismo modo que lo harías en una publicación, escribiendo \"@\" y a continuación su nombre. Por favor, ten en cuenta que cuando comentas en una publicación que no es estrictamente pública, sólo puedes mencionar a usuarios que ya hayan interactuado con la publicación."
       mention_in_comment_q: "¿Puedo mencionar a alguien en un comentario?"
       see_mentions_a: "Sí, pulsa en \"@menciones\" en la columna izquierda de tu pagina principal."
       see_mentions_q: "¿Hay alguna forma de ver las publicaciones en las cuales he sido mencionado?"
@@ -449,6 +461,10 @@ es:
       format_text_q: "¿Cómo puedo formatear el texto en mis publicaciones (negrita, italica, etc.)?"
       hide_posts_a: "Si apuntas tu mouse a la parte superior de una publicación, una X aparecerá en la derecha. Hazle click para ocultar la publicación y silenciar las notificaciones relacionadas. Puedes aún asi ver la publicación si visitas la pagina de perfil de la persona que le publico."
       hide_posts_q: "¿Cómo oculto una publicación?"
+      ignore_user_a1: "Si estás compartiendo con esas personas, eliminarles de tus aspectos detendrá la aparición de sus post en tu stream. Un método más completo es \"ignorar\" esas cuentas. Esto impedirá que cualquiera de sus post aparezcan en tu stream, y ellos no podrán darle a Like o comentar tus post. Ellos podrán, sin embargo, compartir tus post, comentar tus post que hayan compartido otros, y sus comenatrios en los post de otras personas que aparezcan en tu stream serán visibles para ti."
+      ignore_user_a2: "Para ignorar una cuenta, pulsa el icono \"ignorar\" (un círculo con una línea diagonal atravesándolo) en la parte superior derecha de alguno de sus post. Sus post instantáneamente desaparecerán de stream. Alternativamente, ve a su página de perfil y pulsa en el botón de ignorar allí. Tu todavía podrás ver sus post en la página de su perfil, o usando la vista de único-post."
+      ignore_user_a3: "La lista de personas que has ignorado puedes verla en los ajustes de tu cuenta, en la sección Privacidad. Para dejar de ignorar a alguien, bórrale de la lista en esa página."
+      ignore_user_q: "¿Cómo puedo impedir que los post de una persona aparezcan en mi stream?"
       insert_images_a: "Haz click en el pequeño ícono de la camara para insertar una imagen en una publicación. Presiona la foto otra ves para agregar otra foto, o puedes seleccionar multipes fotos para subir de una vez."
       insert_images_comments_a: "Puedes usar Markdown para insertar una imagen desde la web en un comentario, como en los posts. Sin embargo, no puedes subir imágenes de tu ordenador directamente a los comentarios. Súbelas a un servicio de almacenamiento de imágenes y entonces insértales usando el botón de imagen encima del editor."
       insert_images_comments_q: "¿Puedo insertar imágenes en los comentarios?"
@@ -632,6 +648,10 @@ es:
       one: "%{actors} ha comentado tu %{post_link}."
       other: "%{actors} han comentado tu %{post_link}."
       zero: "%{actors} comentarios en tu %{post_link}."
+    contacts_birthday:
+      one: "%{actors} persona cumple años el %{date}."
+      other: "%{actors} cumplen años el %{date}."
+      zero: "%{actors} personas cumplen años el %{date}."
     index:
       all_notifications: "Todas las Notificaciones"
       also_commented: "Otros comentarios"
@@ -641,6 +661,7 @@ es:
         other: "y %{count} más"
         zero: "y nadie más"
       comment_on_post: "Comentar en el post"
+      contacts_birthday: "Cumpleaños"
       liked: "Te gustó"
       mark_all_as_read: "Marcar todo como leído"
       mark_all_shown_as_read: "Marcar todos como leídos"
@@ -669,6 +690,9 @@ es:
       one: "%{actors} te ha mencionado en una publicación eliminada."
       other: "%{actors} te han mencionado en una publicación eliminada."
       zero: "%{actors} te han mencionado en una publicación eliminada."
+    mentioned_in_comment_deleted:
+      one: "%{actors} te ha mencionado en un comentario eliminado."
+      other: "%{actors} te han mencionado en un comentario eliminado."
     private_message:
       one: "%{actors} te ha escrito"
       other: "%{actors} te han escrito."
@@ -698,6 +722,10 @@ es:
     confirm_email:
       click_link: "Para activar tu nueva dirección de correo %{unconfirmed_email}, sigue este enlace:"
       subject: "Por favor activa tu nueva dirección de correo %{unconfirmed_email}"
+    contacts_birthday:
+      birthday: "%{name} cumplen años hoy. Deséales un \"¡Feliz cumpleaños!\""
+      subject: "%{name} cumple años hoy"
+      view_profile: "Ver el perfil de %{name}"
     csrf_token_fail:
       body: |-
           Hola %{name},
@@ -1062,6 +1090,7 @@ es:
     total_users: "Usuarios totales"
     version: "Versión"
   status_messages:
+    bad_aspects: "No se pueden aplicar los aspectos IDs proporcionados (no existen o no se poseen)"
     new:
       mentioning: "Menciones: %{person}"
     too_long: "Por favor, pon un mensaje de estado menor de %{count} caracteres. Actualmente ocupa %{current_length} caracteres."
@@ -1128,6 +1157,7 @@ es:
       also_commented: "alguien comenta en una publicación que has comentado"
       auto_follow_aspect: "Aspecto para los usuarios seguidos automáticamente:"
       auto_follow_back: "Seguir automáticamente a los usuarios que te sigan"
+      birthday: "alguien cumple años hoy"
       change: "Cambiar"
       change_color_theme: "Cambiar el color del tema"
       change_email: "Cambiar correo"
@@ -1155,7 +1185,7 @@ es:
       export_in_progress: "Actualmente estamos procesando tus datos. Por favor, vuelve en unos minutos."
       export_photos_in_progress: "En este momento estamos procesando tus fotografías. Por favor, vuelva en unos instantes."
       following: "Ajustes de Seguimiento"
-      last_exported_at: "(Última actualización el %{timestamp})"
+      last_exported_html: "(Última actualización %{timeago})"
       liked: "a alguien le gusta tu publicación"
       mentioned: "te mencionan en una publicación"
       new_password: "Nueva contraseña"

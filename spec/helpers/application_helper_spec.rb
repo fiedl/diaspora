@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 #   Copyright (c) 2010-2011, Diaspora Inc.  This file is
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
@@ -30,6 +32,30 @@ describe ApplicationHelper, :type => :helper do
     it 'returns false if not all networks are connected' do
       @current_user.services.delete_all
       expect(all_services_connected?).to be false
+    end
+  end
+
+  describe "#service_unconnected?" do
+    attr_reader :current_user
+
+    before do
+      @current_user = alice
+    end
+
+    it "returns true if the service is unconnected" do
+      expect(AppConfig).to receive(:show_service?).with("service", alice).and_return(true)
+      expect(service_unconnected?("service")).to be true
+    end
+
+    it "returns false if the service is already connected" do
+      @current_user.services << FactoryGirl.build(:service, provider: "service")
+      expect(AppConfig).to receive(:show_service?).with("service", alice).and_return(true)
+      expect(service_unconnected?("service")).to be false
+    end
+
+    it "returns false if the the service shouldn't be shown" do
+      expect(AppConfig).to receive(:show_service?).with("service", alice).and_return(false)
+      expect(service_unconnected?("service")).to be false
     end
   end
 
